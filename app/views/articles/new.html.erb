@@ -2,8 +2,23 @@
 
 <h1> Create an Article </h1>
 
+<% if @article.errors.any? %>
+<h2>The following errors prevented the article from getting created</h2>
+<ul>
+    <!-- so, for each full_message do something, ->
+    <% @article.errors.full_messages.each do |msg| %>
+    
+    
+    <!--and what do we want to do with the msg, we simply want it to display, but we can have more than 1 message, we can have more than 1 error, so we simply use <li>-->
 
-    # for the (f) you can choose other name
+        <li><%= msg %></li>
+
+    <% end %>
+</ul>
+<% end %>
+
+
+    <!--for the (f) you can choose other name-->
 <%= form_for @article do |f| %>
 
     <p>
