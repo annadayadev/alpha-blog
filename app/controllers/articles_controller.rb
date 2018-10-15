@@ -4,12 +4,28 @@
 # < means subclass of, so ArticlesController as subclass of ApplicationController
 class ArticlesController < ApplicationController
     
-    #we know that this is going to have a new action because its looking for a new articles route.
-    
+#we know that this is going to have a new action because its looking for a new articles route.
+
+# this wwill be our index, which will show the list of all our aricles
+
+    def index
+        @articles = Article.all
+        
+    end 
+
+#creating new article    
     def new
         
         @article = Article.new
         
+    end
+
+#editing article    
+    def edit
+        
+    #let's first find the article that we need to edit
+    @article = Article.find(params[:id])
+    
     end
     
     def create
@@ -41,7 +57,33 @@ class ArticlesController < ApplicationController
         end    
     end
     
+    
+    
+# we got an error: Unknown action after pressing the button edit, so we have to create our action button for update/edit
+    def update 
+        #first we have to create this article instance variable
+        @article = Article.find(params[:id])
+        
+        #and same as create we have to add a conditional statement:if the new data passess our validations. but instead of save we'll say update.
+        
+        # we got an error saying wrong number arguments because we didn't passed in anything, if article.update, then update of what? so we're going to reuse this article_params method to whitelist whatever is submitted -- look again with our code for new, you would see that it is very similar. 
+        if @article.update(article_params)
+            flash[:notice] = "Article was successfully updated"
+            redirect_to article_path(@article)
+            
+        else 
+            #if there's an instance that doesn't passed the validation then we want them to redirected on the same page which is the edit page.
+            render 'edit'
+        
+         end
+    end
+    
+    
+    
+    
 # this is the action to show the pages of the blogs created using ids
+
+#show article page
     def show
         @article = Article.find(params[:id])
         

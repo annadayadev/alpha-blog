@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'pages/about', to: 'pages#about'
     
  
-    
+ # this line of code gives us a new articles path opposed to create article and edit article path, a patch to update article, delete article path, and index article path. All these parts are created just by using this code below.
     resources :articles
 
   # Example of regular route:
