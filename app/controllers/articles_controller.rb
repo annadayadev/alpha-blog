@@ -4,6 +4,10 @@
 # < means subclass of, so ArticlesController as subclass of ApplicationController
 class ArticlesController < ApplicationController
     
+#remember we removed this code @article = Article.find(params[:id]) from edit, update, show and destroy, which has the function of getting the specific id of the article, so to ensure that we are still getting that method/function first before it does anything else, we need to declare that method here above all the actions. And remember that :set_article was declared below on the private. However, there are functions that doesnt really need this method such as index, new and we only need the other 4 to call this method, so we need to add only: and specify those that needs it.
+    
+    before_action :set_article, only: [ :edit, :update, :show, :destroy]
+    
 #we know that this is going to have a new action because its looking for a new articles route.
 
 # this wwill be our index, which will show the list of all our aricles
@@ -24,7 +28,7 @@ class ArticlesController < ApplicationController
     def edit
         
     #let's first find the article that we need to edit
-    @article = Article.find(params[:id])
+    #@article = Article.find(params[:id])
     
     end
     
@@ -62,7 +66,7 @@ class ArticlesController < ApplicationController
 # we got an error: Unknown action after pressing the button edit, so we have to create our action button for update/edit
     def update 
         #first we have to create this article instance variable
-        @article = Article.find(params[:id])
+        #@article = Article.find(params[:id])
         
         #and same as create we have to add a conditional statement:if the new data passess our validations. but instead of save we'll say update.
         
@@ -85,14 +89,14 @@ class ArticlesController < ApplicationController
 
 #show article page
     def show
-        @article = Article.find(params[:id])
+       # @article = Article.find(params[:id])
         
     end
     
-        def destroy
+    def destroy
         
         #targeting the specific article
-        @article = Article.find(params[:id])
+        #@article = Article.find(params[:id])
         
         # to delete
         @article.destroy
@@ -107,6 +111,10 @@ class ArticlesController < ApplicationController
     
     
         private
+            def set_article
+                @article = Article.find(params[:id])
+            end
+            
         	def article_params
         	
       #params.require toplevel key article, then we want to permit the keys article, the values of title, desc, so that is the article params
