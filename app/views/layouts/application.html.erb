@@ -8,16 +8,11 @@
 </head>
 <body>
   
-  <!--so now we have a way of displaying message when article gets successfully created.-->
-    <% flash.each do |name, msg| %>
-    
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-    
-    <% end %>
+<!-- Our flash module which is responsible for our messages/notifies whenever the action is successful or not was moved to a different file that we created -- partial file named _messages.html.erb  and  we also call the function to connect our partial here below-->
 
-<%= yield %>
+  <%= render 'layouts/messages' %>
+
+  <%= yield %>
 
 </body>
 </html>

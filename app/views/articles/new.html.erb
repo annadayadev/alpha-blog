@@ -2,40 +2,11 @@
 
 <h1> Create an Article </h1>
 
-<% if @article.errors.any? %>
-<h2>The following errors prevented the article from getting created</h2>
-<ul>
-    <!-- so, for each full_message do something, ->
-    <% @article.errors.full_messages.each do |msg| %>
-    
-    
-    <!--and what do we want to do with the msg, we simply want it to display, but we can have more than 1 message, we can have more than 1 error, so we simply use <li>-->
+<!-- here is how we call the partials, and since our partial is on the same directory, we dont need to specify the folders. but if it is inside other folder then we need to specify that folder/file -->
 
-        <li><%= msg %></li>
+<%= render 'form' %>
 
-    <% end %>
-</ul>
-<% end %>
-
-
-    <!--for the (f) you can choose other name-->
-<%= form_for @article do |f| %>
-
-    <p>
-        <%= f.label :title %><br />
-        <%= f.text_field :title %>
-    </p>
-    <p>
-        <%= f.label :description %><br />
-        <%= f.text_area :description %>
-    </p>
-    <p>
-        <%= f.submit %>
-    </p>
-
-<% end %>
-
-<%= link_to "Back to articles listing", articles_path %>
+<!-- Now, let's do the same with edit -->
 
 
 
