@@ -10,9 +10,21 @@
   
 <!-- Our flash module which is responsible for our messages/notifies whenever the action is successful or not was moved to a different file that we created -- partial file named _messages.html.erb  and  we also call the function to connect our partial here below-->
 
+  <%= render 'layouts/navigation' %>
   <%= render 'layouts/messages' %>
+  
+  <!-- the messages/any code you include here will be visible to all the pages/views of the application, it will be global. Example is the Navbar, however we need to make this application.html.erb as clean as possible. So the best thing to do is to create a partial file, remember the _partialnamefile then we can call/render it here in application.html like the line of code above.--->
+  
+  <!-- Hello Ann -->
 
-  <%= yield %>
+<!--this container below helps us to manage with the padding on the sides, and centers our jumbotron -->
+<div class="container">
+    <%= yield %>
+</div>
+
+<!-- this will look for the footer partial -->
+  <%= render 'layouts/footer' %>
+
 
 </body>
 </html>
