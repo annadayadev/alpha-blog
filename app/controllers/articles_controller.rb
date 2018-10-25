@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
 
 
         if @article.save
-            flash[:notice] = "Article was successfully created"
+            flash[:success] = "Article was successfully created"
             redirect_to article_path(@article)
             
         else 
@@ -72,7 +72,7 @@ class ArticlesController < ApplicationController
         
         # we got an error saying wrong number arguments because we didn't passed in anything, if article.update, then update of what? so we're going to reuse this article_params method to whitelist whatever is submitted -- look again with our code for new, you would see that it is very similar. 
         if @article.update(article_params)
-            flash[:notice] = "Article was successfully updated"
+            flash[:success] = "Article was successfully updated"
             redirect_to article_path(@article)
             
         else 
@@ -102,7 +102,11 @@ class ArticlesController < ApplicationController
         @article.destroy
         
         #message/notificationt that it was deleted
-        flash[:notice] = "Article was successfully deleted"
+        
+    #we changed it into danger to have a red background
+       # flash[:notice] = "Article was successfully deleted"
+       
+       flash[:danger] = "Article was successfully deleted"
         
         #redirect to this page once deleted
         redirect_to articles_path

@@ -1,0 +1,74 @@
+
+<!-- we transferred these codes from _form.html.erb to here and then we need to go back to the _form.html.erb file and refer to this partial so we can call it. -> -->
+# <%= render 'shared/errors' %> 
+
+ 
+<!-- This is where the styling of our errors/ validation errors ]]
+    The offset basically moves to the left below example says col-xs-offset-2 means 2 grids to the right. 
+    
+    here's an important thing to take note, if we want this error partial file to be shared resource meaning can be use globally, then we need to get rid of this @article because for example users, will definitely not have @articles, so let's change it into something more generic --- obj. So we need to change all the reference @article into obj. So after changing all @article on this file, we need to say what this obj is -- so in our form render shared error.
+-->
+
+<% if obj.errors.any? %>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+           <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                            <!--shows the number of errors we've hit, if we get 1 error it will say error, if multiple errors it will say errors.-->
+                        <%= pluralize(obj.errors.count, "error") %>
+                        prohibited this article from being saved: 
+                        
+                    </h2>
+                    <div class="panel-body">
+                        <ul>
+                            <!-- so, for each full_message do something, ->
+                            <% obj.errors.full_messages.each do |msg| %>
+    
+    
+                        <!--and what do we want to do with the msg, we simply want it to display, but we can have more than 1 message, we can have more than 1 error, so we simply use <li>-->
+
+                                    <li><%= msg %></li>
+
+                                <% end %>
+                        </ul>
+                    </div>
+                </div>
+           </div>
+         </div>
+    </div>
+    
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

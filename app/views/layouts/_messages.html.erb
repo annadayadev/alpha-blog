@@ -1,14 +1,23 @@
 
 
-
+<!-- this flash notice is the one that gets printed out via this partial -- so let's style this so it will look better -->
 
 
   <!--so now we have a way of displaying message when article gets successfully created.-->
   <!-- We will also create a partial for this flash function -->
-    <% flash.each do |name, msg| %>
-    
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-    
-    <% end %>
+   
+   
+   
+   
+   <div class="row">
+     <div class="col-xs-10 col-xs-offset-1">
+
+        <% flash.each do |name, msg| %>
+      
+          <div class='alert alert-<%="#{name}" %>'>
+            <a href="#" class="close" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+        </div>
+      <% end %>
+    </div>
+</div>    
