@@ -8,37 +8,47 @@
 -->
 
 
-<h1>List of all the articles</h1>
+<h1 align="center">List of all the articles</h1>
 
     <!-- this will link to create new article page -->
-<p>
-    <%= link_to "Create new article", new_article_path %> 
-</p>
+
+
 
 <p>
      <%= link_to "About", pages_about_path %> | <%= link_to 'Home', pages_home_path %>
 </p>
 
-<table>
-    <tr>
-        <th> Title </th>
-        <th> Description </th>
-    </tr>
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th> Title </th>-->
+<!--        <th> Description </th>-->
+<!--    </tr>-->
     
     <!--you can call this variable |article| anything you want -->
     <% @articles.each do |article| %>
     
-    <tr>
-    <!-- with equals because we're going to render something here -->
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %> </td>
-        <td><%= link_to 'Show', article_path(article) %></td>
-        <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} %> </td>
-    </tr>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="well well-lg">
+                    <div class="article-title">
+                        <!-- this means that we want the article title to be a link to show article page, so they can go directly to article once title is clicked -->
+                        <%= link_to article.title, article_path(article) %>
+                    </div>
+                    <!-- instead of showing all the description that would take so much space, we would use method truncate -->
+                    <div class="article-body">
+                        <%= truncate(article.description, length:100) %>
+                    </div>
     
-    <!-- we would want to add a button/option for edit on every article on the list -->
-    
+                    <div class="article-actions">       <!--because we are referring to article and not @article, we will change this into just article -->
+                        <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %> 
+   
+                        <%= link_to "Delete this article", article_path(article), method: :delete, 
+                                            data: { confirm: "Are you sure you want to delete the article?"}, 
+                                            class: "btn btn-xs btn-danger" %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     <% end %>
     
-</table>
