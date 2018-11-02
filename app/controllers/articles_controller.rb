@@ -33,13 +33,14 @@ class ArticlesController < ApplicationController
     end
     
     def create
-        
+       # debugger
         #to display the passing data
         
         # render plain: params[:article].inspect
 
 # we unquote this because we still need to create article with the article params
      @article = Article.new(article_params)
+     @article.user = User.first
      
         # @article.save
         # redirect_to article_path(@article)
