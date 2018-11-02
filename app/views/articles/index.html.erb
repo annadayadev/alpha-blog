@@ -37,6 +37,13 @@
                     <!-- instead of showing all the description that would take so much space, we would use method truncate -->
                     <div class="article-body">
                         <%= truncate(article.description, length:100) %>
+                        
+                        <!-- Here we will add the user who created the article -->
+                        <div class="article-meta-details">
+                        <small>Created by: <%= article.user.username if article.user %>,
+                                            <%= time_ago_in_words(article.created_at) %> ago,
+                                 last updated: <%= time_ago_in_words(article.updated_at) %> ago </small>
+                        </div>
                     </div>
     
                     <div class="article-actions">       <!--because we are referring to article and not @article, we will change this into just article -->
